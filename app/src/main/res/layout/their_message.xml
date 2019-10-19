@@ -7,17 +7,18 @@
     android:paddingRight="60dp"
     android:clipToPadding="false">
 
-    <View
+    <ImageView
         android:id="@+id/avatar"
         android:layout_alignParentLeft="true"
         android:scaleType="centerInside"
         android:background="@drawable/circle"
+        android:src="@drawable/person"
         android:layout_width="34dp"
         android:layout_height="34dp" />
 
     <TextView
         android:id="@+id/name"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="05dp"
         android:layout_toRightOf="@+id/avatar"
         android:layout_alignTop="@+id/avatar"
         android:layout_width="wrap_content"

@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class MessageAdapter extends ArrayAdapter<MessageFormat> {
@@ -51,8 +53,13 @@ public class MessageAdapter extends ArrayAdapter<MessageFormat> {
             messageText.setVisibility(View.VISIBLE);
             usernameText.setVisibility(View.VISIBLE);
 
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+            String time = format.format(calendar.getTime());
+
+
             messageText.setText(message.getMessage());
-            usernameText.setText(message.getUsername());
+            usernameText.setText(message.getUsername()+"  " + time);
         }
 
         return convertView;
