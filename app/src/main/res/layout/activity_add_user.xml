@@ -38,7 +38,7 @@
         <Button
             android:id="@+id/setNickName"
             android:background="@drawable/edittext_shape2"
-            android:text="JOIN..."
+            android:text="JOIN"
             android:textStyle="bold"
             android:textSize="18sp"
             android:layout_width="120dp"

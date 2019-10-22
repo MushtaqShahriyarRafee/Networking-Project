@@ -42,9 +42,9 @@ public class AddUserActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.toString().trim().length() > 0) {
                     joinButton.setEnabled(true);
-                    Log.i(MainActivity.TAG, "onTextChanged: ABLED");
+                    Log.i(MainActivity.TAG, "onTextChanged: Abled");
                 } else {
-                    Log.i(MainActivity.TAG, "onTextChanged: DISABLED");
+                    Log.i(MainActivity.TAG, "onTextChanged: Disabled");
                     joinButton.setEnabled(false);
                 }
             }
@@ -71,18 +71,18 @@ public class AddUserActivity extends AppCompatActivity {
                 }
 
                 if(port.isEmpty()){
-                    portAddress.setError("Port is required.");
+                    portAddress.setError("Port is Required.");
                     portAddress.requestFocus();
                     return;
                 }
                 else if(port.equals("5000")){
                     Intent intent = new Intent(AddUserActivity.this, MainActivity.class);
                     intent.putExtra("username", userNickName.getText().toString());
-                    Toast.makeText(AddUserActivity.this,"Welcome to the chat..!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddUserActivity.this,"Happy Chatting",Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                 }
                 else{
-                    portAddress.setError("Please enter correct port.");
+                    portAddress.setError("Please Enter Correct Port.");
                     portAddress.requestFocus();
                     return;
                 }

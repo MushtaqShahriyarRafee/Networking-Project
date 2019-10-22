@@ -19,6 +19,9 @@ import java.util.ArrayList;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_show);
 
+        Bundle bundle = getIntent().getExtras();
+        String username = bundle.getString("username");
+
         listView = findViewById(R.id.messageShowId);
         databaseHelper = new DatabaseHelper(this);
         loadData();

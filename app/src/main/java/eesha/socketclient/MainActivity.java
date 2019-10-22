@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private int time = 2;
     private int count = 0;
 
+
     ArrayList<String> users = new ArrayList<String>();
     ArrayList<String> showMessage = new ArrayList<String>();
     ArrayList<String> user2 = new ArrayList<String>();
@@ -93,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         textField = findViewById(R.id.textFieldId);
         sendButton = findViewById(R.id.sendButtonId);
         messageListView = findViewById(R.id.messageListViewId);
+
+
 
         Username = getIntent().getStringExtra("username");
 
@@ -147,20 +150,25 @@ public class MainActivity extends AppCompatActivity {
 
         if(item.getItemId() == R.id.connectedUsersId){
 
-            Toast.makeText(MainActivity.this,"Going to Connected Users...",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"Going to Connected Users",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, ConnectedUsers.class);
             intent.putExtra("users",users);
             startActivity(intent);
         }
         else if(item.getItemId() == R.id.saveMessagesId){
 
-            Toast.makeText(MainActivity.this,"Message saved..",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"Message Saved",Toast.LENGTH_SHORT).show();
         }
         else if(item.getItemId() == R.id.showMessagesId){
 
-            Toast.makeText(MainActivity.this,"Going to saved messages...",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"Going to Saved Messages",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, MessageShow.class);
+            intent.putExtra("username",Username);
             startActivity(intent);
+        }
+        else if(item.getItemId() == R.id.deleteMessagesId){
+            databaseHelper.deleteAll();
+            Toast.makeText(MainActivity.this,"All Messages Deleted",Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);
@@ -304,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.i(TAG, "run: " + args[0]);
                     try {
                         Boolean typingOrNot = data.getBoolean("typing");
-                        String userName = data.getString("username") + " is Typing......";
+                        String userName = data.getString("username") + " is Typing...";
                         String id = data.getString("uniqueId");
 
                         if(id.equals(uniqueId)){
@@ -382,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
 
             JSONObject userId = new JSONObject();
             try {
-                userId.put("username", Username + " DisConnected");
+                userId.put("username", Username + " Disconnected");
                 mSocket.emit("connect user", userId);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -395,7 +403,7 @@ public class MainActivity extends AppCompatActivity {
             Username = "";
             messageAdapter.clear();
         }else {
-            Log.i(TAG, "onDestroy: is rotating.....");
+            Log.i(TAG, "onDestroy: is rotating..");
         }
     }
 
@@ -405,7 +413,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
         alertDialogBuilder.setIcon(R.drawable.information);
         alertDialogBuilder.setTitle("Warning");
-        alertDialogBuilder.setMessage("Do you want to exit?");
+        alertDialogBuilder.setMessage("Do you want to Disconnect?");
         alertDialogBuilder.setCancelable(false);
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {

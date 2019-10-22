@@ -9,11 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 public class MessageAdapter extends ArrayAdapter<MessageFormat> {
+
     public MessageAdapter(Context context, int resource, List<MessageFormat> objects) {
         super(context, resource, objects);
     }
@@ -23,6 +22,10 @@ public class MessageAdapter extends ArrayAdapter<MessageFormat> {
         Log.i(MainActivity.TAG, "getView:");
 
         MessageFormat message = getItem(position);
+
+
+//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+//        String currentTime = sdf.format(new Date());
 
         if(TextUtils.isEmpty(message.getMessage())){
 
@@ -34,13 +37,18 @@ public class MessageAdapter extends ArrayAdapter<MessageFormat> {
             String userConnected = message.getUsername();
             messageText.setText(userConnected);
 
+//            editTime.setText(currentTime);
+
         }else if(message.getUniqueId().equals(MainActivity.uniqueId)){
-            Log.i(MainActivity.TAG, "getView: " + message.getUniqueId() + " " + MainActivity.uniqueId);
+            Log.i(MainActivity.TAG, "getView: jodi mile jai" + message.getUniqueId() + " " + MainActivity.uniqueId);
 
 
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.my_message, parent, false);
             TextView messageText = convertView.findViewById(R.id.message_body);
             messageText.setText(message.getMessage());
+
+//            EditText editTime = convertView.findViewById(R.id.message_time);
+//            editTime.setText(currentTime);
 
         }else {
             Log.i(MainActivity.TAG, "getView: is not empty");
@@ -53,13 +61,13 @@ public class MessageAdapter extends ArrayAdapter<MessageFormat> {
             messageText.setVisibility(View.VISIBLE);
             usernameText.setVisibility(View.VISIBLE);
 
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-            String time = format.format(calendar.getTime());
-
 
             messageText.setText(message.getMessage());
-            usernameText.setText(message.getUsername()+"  " + time);
+            usernameText.setText(message.getUsername());
+
+//            EditText editTime = convertView.findViewById(R.id.message_time);
+//            String t = currentTime.toString();
+//            editTime.setText(t);
         }
 
         return convertView;
